@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
+
+import store.account.AccountOut;
+
+
 @FeignClient(
     name="auth",
     url="http://auth:8080"
@@ -27,10 +31,10 @@ public interface AuthController {
         @RequestBody LoginIn in
     );
 
-    // @GetMapping("/auth/me")
-    // public ResponseEntity<AccountOut> me(
-    //     @RequestHeader(value = "id-account", required = true) String idAccount
-    // );
+    @GetMapping("/auth/me")
+    public ResponseEntity<AccountOut> me(
+        @RequestHeader(value = "id-account", required = true) String idAccount
+    );
 
     @PostMapping("/auth/solve")
     public ResponseEntity<Map<String, String>> solveToken(
